@@ -27,7 +27,7 @@ tag app
     .then do |value|
       balance = value.valueOf
     .catch do |e|
-      setStatus = "Error getting balance; see log."
+      status = "Error getting balance; see log."
       console.log e
 
   def onsubmit e
@@ -35,13 +35,12 @@ tag app
     status = "Initiating transaction... (please wait)"
     MetaCoin.deployed:sendCoin(@receiver.value, @amount.value, {from: account})
     .then do
-      console.log err, res
       @amount.value = ''
       @receiver.value = ''
       status = "Transaction complete!"
       refreshBalance
     .catch do |e|
-      setStatus = "Error sending coin; see log."
+      status = "Error sending coin; see log."
       console.log e
 
 

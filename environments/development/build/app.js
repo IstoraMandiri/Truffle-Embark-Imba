@@ -9595,7 +9595,7 @@ if (typeof module != "undefined") {
 				var v_;
 				return (self.setBalance(v_ = value.valueOf()),v_);
 			}).catch(function(e) {
-				self.setSetStatus("Error getting balance; see log.");
+				self.setStatus("Error getting balance; see log.");
 				return console.log(e);
 			});
 		};
@@ -9605,13 +9605,12 @@ if (typeof module != "undefined") {
 			e.cancel().halt();
 			self.setStatus("Initiating transaction... (please wait)");
 			return MetaCoin.deployed().sendCoin(self._receiver.value(),self._amount.value(),{from: self.account()}).then(function() {
-				console.log(self.err(),self.res());
 				self._amount.setValue('');
 				self._receiver.setValue('');
 				self.setStatus("Transaction complete!");
 				return self.refreshBalance();
 			}).catch(function(e) {
-				self.setSetStatus("Error sending coin; see log.");
+				self.setStatus("Error sending coin; see log.");
 				return console.log(e);
 			});
 		};
